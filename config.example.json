@@ -1,0 +1,17 @@
+{
+    "bot_config": {
+        "signal_service": "signal.example.net",
+        "phone_number": "+15555555555",
+        "storage": {
+            "type": "sqlite",
+            "sqlite_db": "signal.db"
+        }
+    },
+
+    "allow_from": ["+15555555555", "+16666666666"],
+
+    "printer_config": {
+        "device": "/dev/usb/lp0",
+        "profile": "TM-T88IV"
+    }
+}
