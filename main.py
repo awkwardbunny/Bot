@@ -8,7 +8,7 @@ from pathlib import Path
 import json
 
 from PIL import Image
-from escpos.printer import File
+from escpos.printer import Network
 
 from signalbot import Command, Context, SignalBot, enable_console_logging, triggered
 
@@ -50,7 +50,7 @@ class TodoCommand(CommandWithHelpMessage):
 
         device = config.get("device", "/dev/usb/lp0")
         profile = config.get("profile", "TM-T88IV")
-        self.printer = File(device, profile=profile)
+        self.printer = Network(device, profile=profile)
         self.printer.set(align="left")
 
         self.logger.info("Printer initialized")

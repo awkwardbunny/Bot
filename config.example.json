@@ -11,7 +11,7 @@
     "allow_from": ["+15555555555", "+16666666666"],
 
     "printer_config": {
-        "device": "/dev/usb/lp0",
+        "device": "127.0.0.1",
         "profile": "TM-T88IV"
     }
 }
