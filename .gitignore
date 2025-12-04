@@ -11,3 +11,4 @@ wheels/
 
 *.db
 config.json
+*.log

@@ -66,7 +66,7 @@ class TodoCommand(CommandWithHelpMessage):
         await self.bot.receipt(ctx.message, "read")
 
         msg = ctx.message.text
-        self.logger.debug(f"Received {msg}")
+        self.logger.debug(f"Received '{msg}'")
         if not msg:
             return
 
@@ -79,6 +79,9 @@ class TodoCommand(CommandWithHelpMessage):
             return
 
         msg = msg[5:]
+
+        short = msg if len(msg) < 30 else msg[:20] + "..."
+        self.logger.info(f"NEW TODO:{short}")
 
         # Print
         ts = datetime.fromtimestamp(ctx.message.timestamp / 1000)
@@ -116,6 +119,12 @@ def main():
     botLogger.info("Loading config...")
     with open("config.json", "r") as f:
         cfg = json.load(f)
+
+    logFile = cfg.get("logFile", "bot.log")
+    fileLogger = logging.FileHandler(logFile)
+    fmtr = logging.Formatter("%(asctime)s [%(levelname)-5.5s] %(name)s:%(message)s")
+    fileLogger.setFormatter(fmtr)
+    botLogger.addHandler(fileLogger)
 
     bot = SignalBot(cfg["bot_config"])
     bot.register(HelpCommand(botLogger), contacts=cfg["allow_from"])

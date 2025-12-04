@@ -1,0 +1,8 @@
+name: signal-bot
+services:
+    bot:
+        image: todo:latest
+        restart: always
+        volumes:
+            - ${PWD}/config.json:/app/config.json
+            - ${PWD}/bot.log:/app/bot.log
