@@ -1,7 +1,7 @@
 name: signal-bot
 services:
     bot:
-        image: todo:latest
+        image: ghcr.io/awkwardbunny/bot:main
         restart: always
         volumes:
             - ${PWD}/config.json:/app/config.json

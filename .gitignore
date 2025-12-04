@@ -12,3 +12,6 @@ wheels/
 *.db
 config.json
 *.log
+
+.idea/
+.python-version
