@@ -57,6 +57,7 @@ class TodoCommand(CommandWithHelpMessage):
 
         # self.printer.textln("Started")
         # self.printer.cut()
+        self.printer.close()
 
     def help_message(self) -> str:
         return "todo: 🖨️ Print out a to-do slip."
@@ -86,6 +87,8 @@ class TodoCommand(CommandWithHelpMessage):
         # Print
         ts = datetime.fromtimestamp(ctx.message.timestamp / 1000)
         ts = ts.strftime("[%m/%d/%Y (%a) -- %H:%M:%S]\n")
+
+        self.printer.open()
         self.printer.textln(ts)
 
         self.printer.set(bold=True)
@@ -109,6 +112,7 @@ class TodoCommand(CommandWithHelpMessage):
                         self.printer.textln()
 
         self.printer.cut()
+        self.printer.close()
         await self.bot.react(ctx.message, "🖨")
 
 
